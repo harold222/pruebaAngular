@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="postForm" class="form">
+        <div class="form-content">
+            <label for="id">Id post</label>
+            <input type="number" formControlName="id" name="id">
+            <span *ngIf="isValid('id')" class="form-error">
+                {{ messageError('id') }}
+            </span>
+        </div>
+        <div class="form-content">
+            <label for="userId">ID usuario</label>
+            <input type="number" formControlName="userId" name="userId">
+            <span *ngIf="isValid('userId')" class="form-error">
+                {{ messageError('userId') }}
+            </span>
+        </div>
+        <div class="form-content">
+            <label for="title">Titulo</label>
+            <input type="string" formControlName="title" name="title">
+            <span *ngIf="isValid('title')" class="form-error">
+                {{ messageError('title') }}
+            </span>
+        </div>
+        <div class="form-content">
+            <label for="body">Cuerpo</label>
+            <input type="string" formControlName="body" name="body">
+            <span *ngIf="isValid('body')" class="form-error">
+                {{ messageError('body') }}
+            </span>
+        </div>
+
+        <div class="form-content-buttons">
+            <button class="form-button form-button-create"
+                [disabled]="postForm.invalid" (click)="onSubmit(0)">
+                Crear
+            </button>
+        
+            <button class="form-button form-button-delete"
+                [disabled]="postForm.invalid" (click)="onSubmit(1)">
+                Eliminar
+            </button>
+        
+            <button class="form-button form-button-update"
+                [disabled]="postForm.invalid" (click)="onSubmit(2)">
+                Actualizar
+            </button>
+        
+            <button class="form-button form-button-patch"
+                [disabled]="postForm.invalid" (click)="onSubmit(3)">
+                Modificar
+            </button>
+        </div>
+        
+    </form>
+    
+    <ng-container *ngIf="messageNotification">
+        <app-notifications [message]="messageNotification"></app-notifications>
+    </ng-container>
+</div>
